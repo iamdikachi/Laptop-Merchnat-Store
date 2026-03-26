@@ -15,15 +15,23 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
-    // Load from localStorage
-    try {
-      const storedProducts = localStorage.getItem('vt_products')
-      const storedSettings = localStorage.getItem('vt_settings')
-      setProducts(storedProducts ? JSON.parse(storedProducts) : sampleProducts)
-      if (storedSettings) setSettings(JSON.parse(storedSettings))
-    } catch {
-      setProducts(sampleProducts)
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch('/api/products')
+        if (res.ok) {
+          const data = await res.json()
+          setProducts(data.length > 0 ? data : sampleProducts)
+        }
+      } catch (err) {
+        console.error('Failed to load products', err)
+      }
     }
+    fetchProducts()
+
+    try {
+      const storedSettings = localStorage.getItem('vt_settings')
+      if (storedSettings) setSettings(JSON.parse(storedSettings))
+    } catch {}
   }, [])
 
   const filtered = products.filter(p => {

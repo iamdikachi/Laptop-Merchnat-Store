@@ -40,19 +40,27 @@ export default function AdminPage() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    try {
-      const storedProducts = localStorage.getItem('vt_products')
-      const storedSettings = localStorage.getItem('vt_settings')
-      setProducts(storedProducts ? JSON.parse(storedProducts) : sampleProducts)
-      if (storedSettings) setSettings(JSON.parse(storedSettings))
-    } catch {
-      setProducts(sampleProducts)
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch('/api/products')
+        if (res.ok) {
+          const data = await res.json()
+          setProducts(data.length > 0 ? data : sampleProducts)
+        }
+      } catch (err) {
+        console.error('Failed to load products', err)
+      }
     }
+    fetchProducts()
+
+    try {
+      const storedSettings = localStorage.getItem('vt_settings')
+      if (storedSettings) setSettings(JSON.parse(storedSettings))
+    } catch {}
   }, [])
 
   const saveProducts = (p: Product[]) => {
-    setProducts(p)
-    localStorage.setItem('vt_products', JSON.stringify(p))
+    setProducts(p) // Keep just the state update for backwards compability if needed anywhere else
   }
 
   const saveSettings = (s: StoreSettings) => {
@@ -88,13 +96,38 @@ export default function AdminPage() {
     setForm(prev => ({ ...prev, images: prev.images.filter((_, i) => i !== idx) }))
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!form.name || !form.price || !form.brand) return
+
+    const finalImages = await Promise.all(
+      form.images.map(async (img) => {
+        if (img.startsWith('http')) return img // Already uploaded
+        try {
+          const res = await fetch('/api/upload', {
+            method: 'POST',
+            body: JSON.stringify({ file: img }),
+          })
+          const data = await res.json()
+          return data.url || img
+        } catch (err) {
+          console.error('Upload failed', err)
+          return img
+        }
+      })
+    )
+
+    const productPayload = { ...form, images: finalImages.filter(Boolean) }
+
     if (editId) {
-      saveProducts(products.map(p => p.id === editId ? { ...form, id: editId, createdAt: p.createdAt } : p))
+      const existing = products.find(p => p.id === editId)
+      const updatedProduct = { ...productPayload, id: editId, createdAt: existing?.createdAt || new Date().toISOString() }
+      await fetch('/api/products', { method: 'PUT', body: JSON.stringify(updatedProduct) })
+      setProducts(products.map(p => p.id === editId ? updatedProduct : p))
       setEditId(null)
     } else {
-      saveProducts([{ ...form, id: Date.now().toString(), createdAt: new Date().toISOString() }, ...products])
+      const newProduct = { ...productPayload, id: Date.now().toString(), createdAt: new Date().toISOString() }
+      await fetch('/api/products', { method: 'POST', body: JSON.stringify(newProduct) })
+      setProducts([newProduct, ...products])
     }
     setForm(emptyProduct())
     setView('products')
@@ -112,10 +145,15 @@ export default function AdminPage() {
     setSidebarOpen(false)
   }
 
-  const handleDelete = (id: string) => {
-    saveProducts(products.filter(p => p.id !== id))
-    setDeleteConfirm(null)
-    triggerSaved()
+  const handleDelete = async (id: string) => {
+    try {
+      await fetch(`/api/products?id=${id}`, { method: 'DELETE' })
+      setProducts(products.filter(p => p.id !== id))
+      setDeleteConfirm(null)
+      triggerSaved()
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   const triggerSaved = () => {
