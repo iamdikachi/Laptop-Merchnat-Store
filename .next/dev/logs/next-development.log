@@ -1,3 +1,18 @@
-{"timestamp":"00:00:02.582","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:08.316","source":"Server","level":"LOG","message":"○ Compiling / ..."}
-{"timestamp":"00:00:13.869","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:22.661","source":"Server","level":"WARN","message":"⚠ Slow filesystem detected. The benchmark took 257ms. If C:\\Users\\User\\Documents\\laptop-store\\.next/dev is a network drive, consider moving it to a local folder.\nSee more: https://nextjs.org/docs/app/guides/local-development"}
+{"timestamp":"00:00:41.100","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:02:10.741","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:02:16.736","source":"Server","level":"LOG","message":"○ Compiling /admin ..."}
+{"timestamp":"00:02:20.907","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
+{"timestamp":"00:02:21.008","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"00:02:21.008","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}
+{"timestamp":"00:09:14.992","source":"Server","level":"LOG","message":"✓ Compiled in 17.4s"}
+{"timestamp":"00:37:38.412","source":"Server","level":"LOG","message":"  Reload env: .env"}
+{"timestamp":"00:38:18.533","source":"Server","level":"LOG","message":"  Reload env: .env"}
+{"timestamp":"00:49:06.219","source":"Server","level":"LOG","message":"  Reload env: .env"}
+{"timestamp":"00:49:07.061","source":"Server","level":"LOG","message":"  Reload env: .env"}
+{"timestamp":"00:49:13.875","source":"Server","level":"LOG","message":"  Reload env: .env"}
+{"timestamp":"00:49:22.456","source":"Server","level":"LOG","message":"  Reload env: .env"}
+{"timestamp":"00:50:22.146","source":"Server","level":"LOG","message":"  Reload env: .env"}
+{"timestamp":"00:59:56.359","source":"Server","level":"LOG","message":"  Reload env: .env"}
+{"timestamp":"00:59:57.919","source":"Server","level":"LOG","message":"  Reload env: .env"}
+{"timestamp":"01:02:51.412","source":"Server","level":"LOG","message":"  Reload env: .env"}
