@@ -5,7 +5,7 @@ import {
   Zap, Package, Settings, Plus, Trash2, LogOut, Edit3,
   Eye, EyeOff, Upload, X, Check, ChevronLeft, AlertCircle, Menu
 } from 'lucide-react'
-import { Product, StoreSettings, defaultSettings, sampleProducts } from '@/lib/store'
+import { Product, StoreSettings, defaultSettings } from '@/lib/store'
 
 type AdminView = 'products' | 'add' | 'settings'
 
@@ -45,7 +45,7 @@ export default function AdminPage() {
         const res = await fetch('/api/products')
         if (res.ok) {
           const data = await res.json()
-          setProducts(data.length > 0 ? data : sampleProducts)
+          setProducts(data)
         }
       } catch (err) {
         console.error('Failed to load products', err)

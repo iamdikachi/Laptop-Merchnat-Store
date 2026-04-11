@@ -4,7 +4,7 @@ import { Zap, Shield, Truck, Headphones, ChevronRight, Cpu, TrendingUp, Package 
 import Navbar from '@/components/Navbar'
 import ProductCard from '@/components/ProductCard'
 import FloatingSocials from '@/components/FloatingSocials'
-import { Product, StoreSettings, defaultSettings, sampleProducts } from '@/lib/store'
+import { Product, StoreSettings, defaultSettings } from '@/lib/store'
 
 const categories = ['All', 'Gaming', 'Business', 'Creator', 'Budget', 'Ultrabook']
 
@@ -20,7 +20,7 @@ export default function Home() {
         const res = await fetch('/api/products')
         if (res.ok) {
           const data = await res.json()
-          setProducts(data.length > 0 ? data : sampleProducts)
+          setProducts(data)
         }
       } catch (err) {
         console.error('Failed to load products', err)
