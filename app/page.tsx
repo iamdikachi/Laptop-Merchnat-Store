@@ -13,6 +13,7 @@ export default function Home() {
   const [settings, setSettings] = useState<StoreSettings>(defaultSettings)
   const [activeCategory, setActiveCategory] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -24,6 +25,8 @@ export default function Home() {
         }
       } catch (err) {
         console.error('Failed to load products', err)
+      } finally {
+        setLoading(false)
       }
     }
     fetchProducts()
@@ -49,6 +52,30 @@ export default function Home() {
     { label: 'Happy Customers', value: '500+', icon: TrendingUp },
     { label: 'Brands Available', value: [...new Set(products.map(p => p.brand))].length, icon: Cpu },
   ]
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0b] flex flex-col items-center justify-center relative overflow-hidden">
+        {/* Background grid */}
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: 'linear-gradient(#c8f135 1px, transparent 1px), linear-gradient(90deg, #c8f135 1px, transparent 1px)',
+          backgroundSize: '60px 60px'
+        }} />
+        {/* Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#c8f135]/10 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="w-20 h-20 bg-[#c8f135] rounded-3xl flex items-center justify-center animate-pulse mb-8 shadow-[0_0_40px_rgba(200,241,53,0.3)]">
+            <Zap size={40} className="text-[#0a0a0b]" fill="currentColor" />
+          </div>
+          <h2 style={{ fontFamily: 'Bebas Neue, sans-serif' }} className="text-4xl text-white tracking-widest animate-pulse">
+            LOADING {settings.storeName.toUpperCase()}
+          </h2>
+          <p className="text-sm text-[#9aa0aa] mt-3 uppercase tracking-wider">Preparing inventory...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <main className="min-h-screen bg-[#0a0a0b]">

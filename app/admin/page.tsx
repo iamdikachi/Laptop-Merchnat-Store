@@ -37,6 +37,7 @@ export default function AdminPage() {
   const [saved, setSaved] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
   const [deleteError, setDeleteError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -50,6 +51,8 @@ export default function AdminPage() {
         }
       } catch (err) {
         console.error('Failed to load products', err)
+      } finally {
+        setLoading(false)
       }
     }
     fetchProducts()
@@ -217,6 +220,20 @@ export default function AdminPage() {
             </div>
           </div>
         </div>
+      </div>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0b] flex flex-col items-center justify-center">
+        <div className="w-16 h-16 bg-[#1a1a1e] border border-[#2e2e35] rounded-2xl flex items-center justify-center mb-6 animate-pulse">
+          <Zap size={24} className="text-[#c8f135]" fill="currentColor" />
+        </div>
+        <h2 style={{ fontFamily: 'Bebas Neue, sans-serif' }} className="text-2xl text-white tracking-widest animate-pulse">
+          Loading Admin Panel
+        </h2>
+        <p className="text-sm text-[#9aa0aa] mt-2">Checking secure connection...</p>
       </div>
     )
   }
