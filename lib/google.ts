@@ -24,15 +24,17 @@ export async function getProductsFromSheet(): Promise<Product[]> {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
-      range: 'Sheet1!A2:Q', // Assuming data starts on row 2 (row 1 is header)
+      range: 'Sheet1!A2:Q',
     });
 
     const rows = response.data.values || [];
 
-    return rows.map((row: any[]) => {
+    return rows
+      .filter((row: any[]) => row[0]) // Filter out empty validation rows or rows without an ID
+      .map((row: any[]) => {
       // id, name, price, originalPrice, category, brand, badge, processor, ram, storage, display, battery, images, inStock, createdAt
       return {
-        id: row[0],
+        id: String(row[0]).trim(),
         name: row[1],
         price: Number(row[2]),
         originalPrice: row[3] ? Number(row[3]) : undefined,
@@ -52,7 +54,7 @@ export async function getProductsFromSheet(): Promise<Product[]> {
         inStock: row[13] === 'true' || row[13] === 'TRUE',
         createdAt: row[14] || new Date().toISOString(),
       };
-    }).reverse(); // Latest first when displaying
+    }).reverse(); 
   } catch (error) {
     console.error('Error fetching from Google Sheets:', error);
     return [];
@@ -105,7 +107,7 @@ export async function updateProductInSheet(product: Product) {
   });
 
   const rows = response.data.values || [];
-  const rowIndex = rows.findIndex((row: any[]) => row[0] === product.id);
+  const rowIndex = rows.findIndex((row: any[]) => row[0] && String(row[0]).trim() === product.id.trim());
 
   if (rowIndex === -1) {
     throw new Error('Product not found in sheet');
@@ -155,7 +157,7 @@ export async function deleteProductFromSheet(id: string) {
   });
 
   const rows = response.data.values || [];
-  const rowIndex = rows.findIndex((row: any[]) => row[0] === id);
+  const rowIndex = rows.findIndex((row: any[]) => row[0] && String(row[0]).trim() === id.trim());
 
   if (rowIndex === -1) {
     throw new Error('Product not found in sheet');

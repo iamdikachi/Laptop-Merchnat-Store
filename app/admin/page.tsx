@@ -36,6 +36,7 @@ export default function AdminPage() {
   const [editId, setEditId] = useState<string | null>(null)
   const [saved, setSaved] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
+  const [deleteError, setDeleteError] = useState<string | null>(null)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -147,12 +148,17 @@ export default function AdminPage() {
 
   const handleDelete = async (id: string) => {
     try {
-      await fetch(`/api/products?id=${id}`, { method: 'DELETE' })
+      const res = await fetch(`/api/products?id=${encodeURIComponent(id)}`, { method: 'DELETE' })
+      if (!res.ok) {
+        const errorData = await res.json()
+        throw new Error(errorData.error || 'Failed to delete on server')
+      }
       setProducts(products.filter(p => p.id !== id))
       setDeleteConfirm(null)
       triggerSaved()
     } catch (err) {
       console.error(err)
+      setDeleteError("Failed to delete product. Please try again.")
     }
   }
 
@@ -608,6 +614,25 @@ export default function AdminPage() {
           )}
         </div>
       </div>
+
+      {/* Delete Error Modal */}
+      {deleteError && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+          <div className="bg-[#111113] border border-[#1a1a1e] rounded-2xl p-6 w-full max-w-sm text-center">
+            <div className="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <AlertCircle size={24} className="text-red-500" />
+            </div>
+            <h3 className="text-lg font-bold text-white mb-2">Deletion Failed</h3>
+            <p className="text-sm text-[#9aa0aa] mb-6">{deleteError}</p>
+            <button
+              onClick={() => setDeleteError(null)}
+              className="w-full py-3 rounded-xl bg-[#1a1a1e] text-white font-semibold text-sm hover:bg-[#2e2e35] transition-colors"
+            >
+              Okay
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
