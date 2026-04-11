@@ -2,8 +2,8 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'VoltTech — Premium Laptops',
-    short_name: 'VoltTech',
+    name: 'E-Tech Gadgets — Premium Laptops',
+    short_name: 'E-Tech Gadgets',
     description: 'Premium laptops at unbeatable prices. Gaming, Business, Creator, Ultrabook and Budget laptops in Lagos.',
     start_url: '/',
     display: 'standalone',

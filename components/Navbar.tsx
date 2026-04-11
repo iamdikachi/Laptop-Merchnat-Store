@@ -9,7 +9,7 @@ interface NavbarProps {
   searchValue?: string
 }
 
-export default function Navbar({ storeName = 'VoltTech', onSearch, searchValue = '' }: NavbarProps) {
+export default function Navbar({ storeName = 'E-Tech Gadgets', onSearch, searchValue = '' }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)

@@ -1,4 +1,4 @@
-# VoltTech Laptop Store — Next.js
+# E-Tech Gadgets Laptop Store — Next.js
 
 A polished, dark-themed laptop storefront with admin panel. Built with Next.js 14, TypeScript, and Tailwind CSS.
 

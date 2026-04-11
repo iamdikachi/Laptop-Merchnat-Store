@@ -84,7 +84,7 @@ export default function Home() {
             >
               {settings.storeName}
               <br />
-              <span className="text-[#c8f135] volt-text-glow">LAPTOPS</span>
+              <span className="text-[#c8f135] volt-text-glow text-xl md:text-6xl">LAPTOPS STORE</span>
             </h1>
 
             <p className="text-lg text-[#9aa0aa] max-w-xl mb-8 leading-relaxed">
@@ -200,7 +200,7 @@ export default function Home() {
           </h2>
           <p className="text-[#9aa0aa] max-w-lg mx-auto text-sm leading-relaxed">
             We source premium laptops directly, ensuring genuine products at competitive prices.
-            Based in Lagos, we offer fast local delivery and dedicated after-sales support.
+            Based in Awka, we offer fast local delivery and dedicated after-sales support.
           </p>
         </div>
       </section>
@@ -216,7 +216,7 @@ export default function Home() {
               {settings.storeName}
             </span>
           </div>
-          <p className="text-xs text-[#3d3d47]">© 2025 {settings.storeName}. All rights reserved.</p>
+          <p className="text-xs text-[#3d3d47]">© 2026 {settings.storeName}. All rights reserved.</p>
         </div>
       </footer>
 

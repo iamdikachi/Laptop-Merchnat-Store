@@ -562,7 +562,7 @@ export default function AdminPage() {
                 <div className="bg-[#111113] border border-[#1a1a1e] rounded-xl p-4 space-y-3">
                   <h3 className="text-sm font-medium text-white">Branding</h3>
                   {[
-                    { key: 'storeName', label: 'Store Name', placeholder: 'VoltTech' },
+                    { key: 'storeName', label: 'Store Name', placeholder: 'E-Tech Gadgets' },
                     { key: 'tagline', label: 'Tagline', placeholder: 'Premium Laptops...' },
                     { key: 'currency', label: 'Currency Symbol', placeholder: '₦' },
                   ].map(({ key, label, placeholder }) => (

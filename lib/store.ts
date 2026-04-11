@@ -34,11 +34,11 @@ export interface StoreSettings {
 }
 
 export const defaultSettings: StoreSettings = {
-  storeName: 'VoltTech',
+  storeName: 'E-Tech Gadgets',
   tagline: 'Premium Laptops. Unbeatable Prices.',
-  whatsapp: '+2348000000000',
-  instagram: 'volttech_laptops',
-  facebook: 'volttechlaptops',
+  whatsapp: '+2349066846864',
+  instagram: '@iamdikachi',
+  facebook: '@iamdikachukwu',
   adminPassword: 'admin123',
   currency: '₦',
   accentColor: '#c8f135',
