@@ -44,7 +44,7 @@ export default function AdminPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('/api/products', { cache: 'no-store' })
+        const res = await fetch(`/api/products?t=${Date.now()}`, { cache: 'no-store' })
         if (res.ok) {
           const data = await res.json()
           setProducts(data)
@@ -138,7 +138,7 @@ export default function AdminPage() {
         return
       }
     } else {
-      const newProduct = { ...productPayload, id: Date.now().toString(), createdAt: new Date().toISOString() }
+      const newProduct = { ...productPayload, id: `prod_${Date.now()}`, createdAt: new Date().toISOString() }
       try {
         const res = await fetch('/api/products', { method: 'POST', body: JSON.stringify(newProduct) })
         if (!res.ok) {

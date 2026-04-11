@@ -1,72 +1,9 @@
-{"timestamp":"00:00:31.680","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:34.758","source":"Server","level":"LOG","message":"○ Compiling / ..."}
-{"timestamp":"00:01:19.817","source":"Server","level":"LOG","message":"○ Compiling /api/products ..."}
-{"timestamp":"00:02:03.813","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:07:43.103","source":"Server","level":"LOG","message":"✓ Compiled in 8.2s"}
-{"timestamp":"00:09:09.497","source":"Server","level":"LOG","message":"✓ Compiled in 11.1s"}
-{"timestamp":"00:11:17.913","source":"Server","level":"LOG","message":"✓ Compiled in 5.5s"}
-{"timestamp":"00:11:18.615","source":"Server","level":"LOG","message":"✓ Compiled in 3s"}
-{"timestamp":"00:11:20.669","source":"Server","level":"LOG","message":"✓ Compiled in 856ms"}
-{"timestamp":"00:11:26.985","source":"Server","level":"LOG","message":"✓ Compiled in 433ms"}
-{"timestamp":"00:11:57.929","source":"Server","level":"LOG","message":"○ Compiling /admin ..."}
-{"timestamp":"00:12:00.211","source":"Server","level":"LOG","message":"✓ Finished writing to filesystem cache in 30.0s"}
-{"timestamp":"00:12:49.220","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
-{"timestamp":"00:12:54.872","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:12:55.817","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
-{"timestamp":"00:12:55.818","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}
-{"timestamp":"00:12:58.954","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:13:03.715","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:13:06.338","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:13:56.294","source":"Server","level":"LOG","message":"✓ Compiled in 9.9s"}
-{"timestamp":"00:14:29.142","source":"Server","level":"LOG","message":"✓ Compiled in 9.7s"}
-{"timestamp":"00:15:15.551","source":"Server","level":"LOG","message":"✓ Compiled in 4s"}
-{"timestamp":"00:15:30.646","source":"Server","level":"LOG","message":"✓ Compiled in 4.4s"}
-{"timestamp":"00:16:12.225","source":"Server","level":"LOG","message":"✓ Compiled in 4s"}
-{"timestamp":"00:16:32.771","source":"Server","level":"LOG","message":"✓ Compiled in 7s"}
-{"timestamp":"00:16:47.683","source":"Server","level":"LOG","message":"✓ Compiled in 13.7s"}
-{"timestamp":"00:17:00.125","source":"Server","level":"LOG","message":"✓ Compiled in 4s"}
-{"timestamp":"00:17:43.070","source":"Server","level":"LOG","message":"✓ Compiled in 16.1s"}
-{"timestamp":"00:18:12.940","source":"Server","level":"LOG","message":"✓ Compiled in 5.6s"}
-{"timestamp":"00:19:09.163","source":"Server","level":"LOG","message":"✓ Compiled in 9.5s"}
-{"timestamp":"00:20:50.261","source":"Server","level":"LOG","message":"✓ Compiled in 156ms"}
-{"timestamp":"00:21:04.009","source":"Server","level":"LOG","message":"✓ Compiled in 172ms"}
-{"timestamp":"00:22:10.106","source":"Server","level":"LOG","message":"✓ Compiled in 286ms"}
-{"timestamp":"00:22:16.178","source":"Server","level":"LOG","message":"✓ Compiled in 194ms"}
-{"timestamp":"00:22:19.349","source":"Server","level":"LOG","message":"✓ Compiled in 184ms"}
-{"timestamp":"00:22:21.801","source":"Server","level":"LOG","message":"✓ Compiled in 255ms"}
-{"timestamp":"00:22:53.949","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:24:43.091","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
-{"timestamp":"00:24:43.092","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}
-{"timestamp":"00:24:43.094","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
-{"timestamp":"00:24:43.959","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:24:44.794","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:25:51.083","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:25:52.170","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
-{"timestamp":"00:25:52.305","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
-{"timestamp":"00:25:52.313","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}
-{"timestamp":"00:25:53.099","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:25:54.387","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:30:31.742","source":"Server","level":"LOG","message":"✓ Compiled in 1069ms"}
-{"timestamp":"00:30:34.240","source":"Server","level":"LOG","message":"✓ Compiled in 1294ms"}
-{"timestamp":"00:33:50.255","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:36:11.190","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:40:08.074","source":"Server","level":"LOG","message":"✓ Compiled in 639ms"}
-{"timestamp":"00:40:14.451","source":"Server","level":"LOG","message":"✓ Compiled in 1468ms"}
-{"timestamp":"00:41:00.868","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
-{"timestamp":"00:41:00.902","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
-{"timestamp":"00:41:00.904","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}
-{"timestamp":"00:41:08.730","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:41:09.031","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:41:14.181","source":"Server","level":"LOG","message":"✓ Compiled in 758ms"}
-{"timestamp":"00:45:07.869","source":"Server","level":"LOG","message":"✓ Compiled in 576ms"}
-{"timestamp":"00:47:12.630","source":"Server","level":"LOG","message":"✓ Compiled in 845ms"}
-{"timestamp":"00:47:20.287","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:50:52.425","source":"Server","level":"LOG","message":"✓ Compiled in 3.5s"}
-{"timestamp":"00:51:07.373","source":"Server","level":"LOG","message":"✓ Compiled in 2.6s"}
-{"timestamp":"00:51:11.119","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:54:39.599","source":"Server","level":"LOG","message":"✓ Compiled in 1465ms"}
-{"timestamp":"00:54:55.919","source":"Server","level":"LOG","message":"✓ Compiled in 888ms"}
-{"timestamp":"00:55:05.333","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:55:05.768","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:55:15.237","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
-{"timestamp":"00:55:29.499","source":"Server","level":"ERROR","message":"Error fetching from Google Sheets: Error: Missing required parameters: spreadsheetId"}
+{"timestamp":"00:01:05.916","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:01:09.030","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:01:42.873","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
+{"timestamp":"00:01:42.935","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"00:01:42.938","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}
+{"timestamp":"00:03:06.028","source":"Browser","level":"WARN","message":"Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior"}
+{"timestamp":"00:03:06.031","source":"Server","level":"WARN","message":"[browser] \"\\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\\\"smooth\\\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\\u001b[39m\""}
+{"timestamp":"00:03:06.033","source":"Browser","level":"WARN","message":"\u001b[33mDetected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior=\"smooth\"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior\u001b[39m"}
+{"timestamp":"00:17:39.889","source":"Server","level":"LOG","message":"✓ Compiled in 6.4s"}

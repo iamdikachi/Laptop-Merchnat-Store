@@ -18,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('/api/products', { cache: 'no-store' })
+        const res = await fetch(`/api/products?t=${Date.now()}`, { cache: 'no-store' })
         if (res.ok) {
           const data = await res.json()
           setProducts(data)
@@ -40,10 +40,10 @@ export default function Home() {
   const filtered = products.filter(p => {
     const matchCat = activeCategory === 'All' || p.category === activeCategory
     const matchSearch = !searchQuery ||
-      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.specs.processor.toLowerCase().includes(searchQuery.toLowerCase())
+      p.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.brand?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.specs?.processor?.toLowerCase().includes(searchQuery.toLowerCase())
     return matchCat && matchSearch
   })
 

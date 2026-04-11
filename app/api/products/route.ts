@@ -1,12 +1,20 @@
 import { NextResponse } from 'next/server';
 import { getProductsFromSheet, addProductToSheet, updateProductInSheet, deleteProductFromSheet } from '@/lib/google';
 
-export const dynamic = 'force-dynamic'; // Ensure no caching of the list
+export const dynamic = 'force-dynamic'; 
+export const revalidate = 0;
 
 export async function GET() {
   try {
     const products = await getProductsFromSheet();
-    return NextResponse.json(products, { status: 200 });
+    return NextResponse.json(products, { 
+      status: 200,
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      }
+    });
   } catch (error) {
     console.error('GET error:', error);
     return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 });

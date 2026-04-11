@@ -24,37 +24,44 @@ export async function getProductsFromSheet(): Promise<Product[]> {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
-      range: 'Sheet1!A2:Q',
+      range: 'Sheet1!A2:Z',
     });
 
     const rows = response.data.values || [];
 
     return rows
-      .filter((row: any[]) => row[0]) // Filter out empty validation rows or rows without an ID
-      .map((row: any[]) => {
-      // id, name, price, originalPrice, category, brand, badge, processor, ram, storage, display, battery, images, inStock, createdAt
-      return {
-        id: String(row[0]).trim(),
-        name: row[1],
-        price: Number(row[2]),
-        originalPrice: row[3] ? Number(row[3]) : undefined,
-        category: row[4] as any,
-        brand: row[5],
-        badge: row[6] ? (row[6] as any) : undefined,
-        specs: {
-          processor: row[7] || '',
-          ram: row[8] || '',
-          storage: row[9] || '',
-          display: row[10] || '',
-          battery: row[11] || undefined,
-          graphics: row[15] || undefined,
-          features: row[16] || undefined,
-        },
-        images: row[12] ? row[12].split(',').filter(Boolean) : [],
-        inStock: row[13] === 'true' || row[13] === 'TRUE',
-        createdAt: row[14] || new Date().toISOString(),
-      };
-    }).reverse(); 
+      .map((rawRow: any[]): Product | null => {
+        let startIndex = 0;
+        while (startIndex < rawRow.length && !String(rawRow[startIndex]).trim()) {
+          startIndex++;
+        }
+        const row = rawRow.slice(startIndex);
+        if (!row[0]) return null;
+
+        return {
+          id: String(row[0]).trim(),
+          name: row[1] || '',
+          price: Number(row[2]) || 0,
+          originalPrice: row[3] ? Number(row[3]) : undefined,
+          category: (row[4] || 'All') as any,
+          brand: row[5] || '',
+          badge: row[6] ? (row[6] as any) : undefined,
+          specs: {
+            processor: row[7] || '',
+            ram: row[8] || '',
+            storage: row[9] || '',
+            display: row[10] || '',
+            battery: row[11] || undefined,
+            graphics: row[15] || undefined,
+            features: row[16] || undefined,
+          },
+          images: row[12] ? String(row[12]).split(',').map(s => s.trim()).filter(Boolean) : [],
+          inStock: String(row[13]).trim().toLowerCase() === 'true',
+          createdAt: row[14] || new Date().toISOString(),
+        };
+      })
+      .filter((p): p is Product => p !== null)
+      .reverse(); 
   } catch (error) {
     console.error('Error fetching from Google Sheets:', error);
     return [];
@@ -103,21 +110,36 @@ export async function updateProductInSheet(product: Product) {
   // First we need to find the row index
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId,
-    range: 'Sheet1!A:A', // Just get IDs to find the row
+    range: 'Sheet1!A:Z', // Get all columns to find the ID gracefully
   });
 
   const rows = response.data.values || [];
-  const rowIndex = rows.findIndex((row: any[]) => row[0] && String(row[0]).trim() === product.id.trim());
+  let sheetRowNumber = -1;
+  let targetRowIndex = -1;
+  let emptyOffset = 0;
 
-  if (rowIndex === -1) {
+  for (let i = 0; i < rows.length; i++) {
+    const rawRow = rows[i];
+    let startIndex = 0;
+    while (startIndex < rawRow.length && !String(rawRow[startIndex]).trim()) {
+      startIndex++;
+    }
+    const idVal = rawRow[startIndex];
+    if (idVal && String(idVal).trim() === product.id.trim()) {
+      targetRowIndex = i;
+      sheetRowNumber = i + 1;
+      emptyOffset = startIndex;
+      break;
+    }
+  }
+
+  if (targetRowIndex === -1) {
     throw new Error('Product not found in sheet');
   }
 
-  // Row index returned by findIndex is 0-based, but Google Sheets is 1-based.
-  // So rowIndex + 1 is the actual sheet row number.
-  const sheetRowNumber = rowIndex + 1;
-
+  const lead = Array(emptyOffset).fill('');
   const rowData = [
+    ...lead,
     product.id,
     product.name,
     product.price.toString(),
@@ -139,7 +161,7 @@ export async function updateProductInSheet(product: Product) {
 
   await sheets.spreadsheets.values.update({
     spreadsheetId,
-    range: `Sheet1!A${sheetRowNumber}:Q${sheetRowNumber}`,
+    range: `Sheet1!A${sheetRowNumber}:Z${sheetRowNumber}`,
     valueInputOption: 'USER_ENTERED',
     requestBody: {
       values: [rowData],
@@ -153,11 +175,24 @@ export async function deleteProductFromSheet(id: string) {
 
   const response = await sheets.spreadsheets.values.get({
     spreadsheetId,
-    range: 'Sheet1!A:A',
+    range: 'Sheet1!A:Z',
   });
 
   const rows = response.data.values || [];
-  const rowIndex = rows.findIndex((row: any[]) => row[0] && String(row[0]).trim() === id.trim());
+  let rowIndex = -1;
+
+  for (let i = 0; i < rows.length; i++) {
+    const rawRow = rows[i];
+    let startIndex = 0;
+    while (startIndex < rawRow.length && !String(rawRow[startIndex]).trim()) {
+      startIndex++;
+    }
+    const idVal = rawRow[startIndex];
+    if (idVal && String(idVal).trim() === id.trim()) {
+      rowIndex = i;
+      break;
+    }
+  }
 
   if (rowIndex === -1) {
     throw new Error('Product not found in sheet');
