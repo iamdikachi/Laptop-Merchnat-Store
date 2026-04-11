@@ -7,7 +7,7 @@ export interface Product {
   name: string;
   price: number;
   originalPrice?: number;
-  category: 'Gaming' | 'Business' | 'Creator' | 'Budget' | 'Ultrabook';
+  category: 'Gaming' | 'Business' | 'Creator' | 'Budget' | 'Ultrabook' | 'Coding';
   brand: string;
   badge?: 'New' | 'Hot' | 'Sale' | 'Limited';
   specs: {
@@ -16,6 +16,8 @@ export interface Product {
     storage: string;
     display: string;
     battery?: string;
+    graphics?: string;
+    features?: string;
   };
   images: string[]; // up to 4 image URLs/base64
   inStock: boolean;

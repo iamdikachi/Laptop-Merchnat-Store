@@ -6,7 +6,7 @@ import ProductCard from '@/components/ProductCard'
 import FloatingSocials from '@/components/FloatingSocials'
 import { Product, StoreSettings, defaultSettings } from '@/lib/store'
 
-const categories = ['All', 'Gaming', 'Business', 'Creator', 'Budget', 'Ultrabook']
+const categories = ['All', 'Gaming', 'Business', 'Creator', 'Budget', 'Ultrabook', 'Coding']
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([])

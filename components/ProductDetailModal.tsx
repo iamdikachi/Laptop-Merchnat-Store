@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { X, ChevronLeft, ChevronRight, Cpu, MemoryStick, HardDrive, Monitor, Battery, Check, Tag } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Cpu, MemoryStick, HardDrive, Monitor, Battery, Check, Zap } from 'lucide-react'
 import { Product, StoreSettings } from '@/lib/store'
 import SocialOrderButtons from './SocialOrderButtons'
 
@@ -163,6 +163,8 @@ export default function ProductDetailModal({ product, settings, isOpen, onClose 
                 { icon: HardDrive, label: 'Storage', value: product.specs.storage },
                 { icon: Monitor, label: 'Display', value: product.specs.display },
                 ...(product.specs.battery ? [{ icon: Battery, label: 'Battery', value: product.specs.battery }] : []),
+                ...(product.specs.graphics ? [{ icon: Zap, label: 'Graphics', value: product.specs.graphics }] : []),
+                ...(product.specs.features ? [{ icon: Check, label: 'Features', value: product.specs.features }] : []),
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-start gap-2.5">
                   <Icon size={13} className="text-[#c8f135] mt-0.5 flex-shrink-0" />

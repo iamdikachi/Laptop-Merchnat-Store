@@ -24,7 +24,7 @@ export async function getProductsFromSheet(): Promise<Product[]> {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
-      range: 'Sheet1!A2:O', // Assuming data starts on row 2 (row 1 is header)
+      range: 'Sheet1!A2:Q', // Assuming data starts on row 2 (row 1 is header)
     });
 
     const rows = response.data.values || [];
@@ -45,6 +45,8 @@ export async function getProductsFromSheet(): Promise<Product[]> {
           storage: row[9] || '',
           display: row[10] || '',
           battery: row[11] || undefined,
+          graphics: row[15] || undefined,
+          features: row[16] || undefined,
         },
         images: row[12] ? row[12].split(',').filter(Boolean) : [],
         inStock: row[13] === 'true' || row[13] === 'TRUE',
@@ -77,11 +79,13 @@ export async function addProductToSheet(product: Product) {
     product.images.join(','),
     product.inStock ? 'true' : 'false',
     product.createdAt,
+    product.specs.graphics || '',
+    product.specs.features || '',
   ];
 
   await sheets.spreadsheets.values.append({
     spreadsheetId,
-    range: 'Sheet1!A:O',
+    range: 'Sheet1!A:Q',
     valueInputOption: 'USER_ENTERED',
     requestBody: {
       values: [row],
@@ -127,11 +131,13 @@ export async function updateProductInSheet(product: Product) {
     product.images.join(','),
     product.inStock ? 'true' : 'false',
     product.createdAt,
+    product.specs.graphics || '',
+    product.specs.features || '',
   ];
 
   await sheets.spreadsheets.values.update({
     spreadsheetId,
-    range: `Sheet1!A${sheetRowNumber}:O${sheetRowNumber}`,
+    range: `Sheet1!A${sheetRowNumber}:Q${sheetRowNumber}`,
     valueInputOption: 'USER_ENTERED',
     requestBody: {
       values: [rowData],

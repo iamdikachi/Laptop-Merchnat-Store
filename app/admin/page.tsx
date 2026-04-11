@@ -9,7 +9,7 @@ import { Product, StoreSettings, defaultSettings } from '@/lib/store'
 
 type AdminView = 'products' | 'add' | 'settings'
 
-const categories = ['Gaming', 'Business', 'Creator', 'Budget', 'Ultrabook'] as const
+const categories = ['Gaming', 'Business', 'Creator', 'Budget', 'Ultrabook', 'Coding'] as const
 const badges = ['', 'New', 'Hot', 'Sale', 'Limited'] as const
 
 const emptyProduct = (): Omit<Product, 'id' | 'createdAt'> => ({
@@ -19,7 +19,7 @@ const emptyProduct = (): Omit<Product, 'id' | 'createdAt'> => ({
   category: 'Business',
   brand: '',
   badge: undefined,
-  specs: { processor: '', ram: '', storage: '', display: '', battery: '' },
+  specs: { processor: '', ram: '', storage: '', display: '', battery: '', graphics: '', features: '' },
   images: [],
   inStock: true,
 })
@@ -60,7 +60,7 @@ export default function AdminPage() {
   }, [])
 
   const saveProducts = (p: Product[]) => {
-    setProducts(p) // Keep just the state update for backwards compability if needed anywhere else
+    setProducts(p)
   }
 
   const saveSettings = (s: StoreSettings) => {
@@ -101,7 +101,7 @@ export default function AdminPage() {
 
     const finalImages = await Promise.all(
       form.images.map(async (img) => {
-        if (img.startsWith('http')) return img // Already uploaded
+        if (img.startsWith('http')) return img 
         try {
           const res = await fetch('/api/upload', {
             method: 'POST',
@@ -529,6 +529,8 @@ export default function AdminPage() {
                       { key: 'storage', label: 'Storage', placeholder: '1TB NVMe SSD' },
                       { key: 'display', label: 'Display', placeholder: '15.6" 3.5K OLED' },
                       { key: 'battery', label: 'Battery Life', placeholder: '13-hour battery life' },
+                      { key: 'graphics', label: 'Graphics', placeholder: 'GTX 1060 6GB dedicated graphics' },
+                      { key: 'features', label: 'Features', placeholder: 'Backlit keyboard, webcam, Wi-Fi' },
                     ].map(({ key, label, placeholder }) => (
                       <div key={key}>
                         <label className="text-xs text-[#9aa0aa] mb-1 block">{label}</label>
