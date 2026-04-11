@@ -42,7 +42,7 @@ export default function ProductDetailModal({ product, settings, isOpen, onClose 
       className="fixed inset-0 z-[90] flex items-end sm:items-center justify-center modal-backdrop bg-black/80 p-0 sm:p-4"
       onClick={handleBackdrop}
     >
-      <div className="relative w-full sm:max-w-4xl max-h-[95vh] overflow-y-auto bg-[#111113] sm:rounded-2xl border border-[#2e2e35]">
+      <div className="relative w-full sm:max-w-4xl max-h-[90vh] overflow-y-auto bg-[#111113] rounded-t-3xl sm:rounded-2xl border border-[#2e2e35] shadow-2xl">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -53,14 +53,14 @@ export default function ProductDetailModal({ product, settings, isOpen, onClose 
 
         <div className="grid sm:grid-cols-2 gap-0">
           {/* Left: Gallery */}
-          <div className="bg-[#0a0a0b] sm:rounded-l-2xl p-4">
+          <div className="bg-[#0a0a0b] sm:rounded-l-2xl pt-4 px-0 pb-4 sm:p-4">
             {/* Main image */}
-            <div className="relative aspect-video rounded-xl overflow-hidden bg-[#1a1a1e] mb-3">
+            <div className="relative aspect-[4/5] sm:aspect-video rounded-none sm:rounded-xl overflow-hidden bg-[#1a1a1e] mb-3">
               {product.images.length > 0 ? (
                 <img
                   src={product.images[activeImg]}
                   alt={product.name}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover sm:object-contain"
                 />
               ) : (
                 <div className="w-full h-full laptop-placeholder flex items-center justify-center">

@@ -81,27 +81,27 @@ export default function SocialOrderButtons({
       <p className="text-xs text-[#9aa0aa] uppercase tracking-wider mb-3">Order via</p>
       <button
         onClick={handleWhatsApp}
-        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-[#1a1a1e] border border-[#2e2e35] text-[#25D366] hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-all duration-200 font-medium text-sm"
+        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-[#1a1a1e] border border-[#2e2e35] text-[#25D366] hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-all duration-200 font-medium text-xs sm:text-sm"
       >
         <WhatsAppIcon />
         <span>Order on WhatsApp</span>
-        <span className="ml-auto text-xs opacity-70">Chat now →</span>
+        <span className="ml-auto text-[10px] sm:text-xs opacity-70">Chat now →</span>
       </button>
       <button
         onClick={handleInstagram}
-        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-[#1a1a1e] border border-[#2e2e35] text-[#E1306C] hover:bg-gradient-to-r hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white hover:border-transparent transition-all duration-200 font-medium text-sm"
+        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-[#1a1a1e] border border-[#2e2e35] text-[#E1306C] hover:bg-gradient-to-r hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white hover:border-transparent transition-all duration-200 font-medium text-xs sm:text-sm"
       >
         <InstagramIcon />
         <span>Order on Instagram</span>
-        <span className="ml-auto text-xs opacity-70">DM us →</span>
+        <span className="ml-auto text-[10px] sm:text-xs opacity-70">DM us →</span>
       </button>
       <button
         onClick={handleFacebook}
-        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-[#1a1a1e] border border-[#2e2e35] text-[#1877F2] hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all duration-200 font-medium text-sm"
+        className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-[#1a1a1e] border border-[#2e2e35] text-[#1877F2] hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all duration-200 font-medium text-xs sm:text-sm"
       >
         <FacebookIcon />
         <span>Order on Facebook</span>
-        <span className="ml-auto text-xs opacity-70">Message →</span>
+        <span className="ml-auto text-[10px] sm:text-xs opacity-70">Message →</span>
       </button>
     </div>
   )

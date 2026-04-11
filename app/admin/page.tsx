@@ -40,6 +40,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
+  const [isSavingSettings, setIsSavingSettings] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -249,7 +250,7 @@ export default function AdminPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0b] flex flex-col items-center justify-center">
+      <div className="min-h-screen bg-[#0a0a0b] flex flex-col items-center justify-center px-4 text-center">
         <div className="w-16 h-16 bg-[#1a1a1e] border border-[#2e2e35] rounded-2xl flex items-center justify-center mb-6 animate-pulse">
           <Zap size={24} className="text-[#c8f135]" fill="currentColor" />
         </div>
@@ -645,10 +646,18 @@ export default function AdminPage() {
                 </div>
 
                 <button
-                  onClick={() => { saveSettings(settings); triggerSaved() }}
-                  className="w-full py-3.5 rounded-xl bg-[#c8f135] text-[#0a0a0b] font-semibold text-sm hover:bg-[#d9f76a] transition-colors"
+                  onClick={async () => {
+                    setIsSavingSettings(true)
+                    await new Promise(r => setTimeout(r, 600))
+                    saveSettings(settings)
+                    triggerSaved()
+                    setIsSavingSettings(false)
+                  }}
+                  disabled={isSavingSettings}
+                  className="w-full py-3.5 rounded-xl bg-[#c8f135] text-[#0a0a0b] font-semibold text-sm hover:bg-[#d9f76a] disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
                 >
-                  Save Settings
+                  {isSavingSettings && <Loader2 size={16} className="animate-spin" />}
+                  {isSavingSettings ? 'Saving...' : 'Save Settings'}
                 </button>
               </div>
             </div>

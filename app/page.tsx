@@ -64,7 +64,7 @@ export default function Home() {
         {/* Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#c8f135]/10 rounded-full blur-3xl pointer-events-none" />
         
-        <div className="relative z-10 flex flex-col items-center">
+        <div className="relative z-10 flex flex-col items-center px-4 text-center">
           <div className="w-20 h-20 bg-[#c8f135] rounded-3xl flex items-center justify-center animate-pulse mb-8 shadow-[0_0_40px_rgba(200,241,53,0.3)]">
             <Zap size={40} className="text-[#0a0a0b]" fill="currentColor" />
           </div>
