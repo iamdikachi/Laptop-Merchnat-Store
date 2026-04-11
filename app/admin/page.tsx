@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import {
   Zap, Package, Settings, Plus, Trash2, LogOut, Edit3,
-  Eye, EyeOff, Upload, X, Check, ChevronLeft, AlertCircle, Menu
+  Eye, EyeOff, Upload, X, Check, ChevronLeft, AlertCircle, Menu, Loader2
 } from 'lucide-react'
 import { Product, StoreSettings, defaultSettings } from '@/lib/store'
 
@@ -39,6 +39,7 @@ export default function AdminPage() {
   const [actionError, setActionError] = useState<{ title: string; message: string } | null>(null)
   const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -102,6 +103,7 @@ export default function AdminPage() {
 
   const handleSubmit = async () => {
     if (!form.name || !form.price || !form.brand) return
+    setIsSaving(true)
 
     const finalImages = await Promise.all(
       form.images.map(async (img) => {
@@ -135,6 +137,7 @@ export default function AdminPage() {
         setEditId(null)
       } catch (err: any) {
         setActionError({ title: 'Update Failed', message: err.message })
+        setIsSaving(false)
         return
       }
     } else {
@@ -148,12 +151,14 @@ export default function AdminPage() {
         setProducts([newProduct, ...products])
       } catch (err: any) {
         setActionError({ title: 'Save Failed', message: err.message })
+        setIsSaving(false)
         return
       }
     }
     setForm(emptyProduct())
     setView('products')
     triggerSaved()
+    setIsSaving(false)
   }
 
   const handleEdit = (product: Product) => {
@@ -588,10 +593,11 @@ export default function AdminPage() {
 
                 <button
                   onClick={handleSubmit}
-                  disabled={!form.name || !form.price || !form.brand}
-                  className="w-full py-3.5 rounded-xl bg-[#c8f135] text-[#0a0a0b] font-semibold text-sm hover:bg-[#d9f76a] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  disabled={!form.name || !form.price || !form.brand || isSaving}
+                  className="w-full py-3.5 rounded-xl bg-[#c8f135] text-[#0a0a0b] font-semibold text-sm hover:bg-[#d9f76a] disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
                 >
-                  {editId ? 'Save Changes' : 'Add Product'}
+                  {isSaving && <Loader2 size={16} className="animate-spin" />}
+                  {editId ? (isSaving ? 'Saving...' : 'Save Changes') : (isSaving ? 'Adding...' : 'Add Product')}
                 </button>
               </div>
             </div>
