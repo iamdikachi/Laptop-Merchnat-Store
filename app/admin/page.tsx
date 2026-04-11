@@ -36,7 +36,7 @@ export default function AdminPage() {
   const [editId, setEditId] = useState<string | null>(null)
   const [saved, setSaved] = useState(false)
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
-  const [deleteError, setDeleteError] = useState<string | null>(null)
+  const [actionError, setActionError] = useState<{ title: string; message: string } | null>(null)
   const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -44,7 +44,7 @@ export default function AdminPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('/api/products')
+        const res = await fetch('/api/products', { cache: 'no-store' })
         if (res.ok) {
           const data = await res.json()
           setProducts(data)
@@ -125,13 +125,31 @@ export default function AdminPage() {
     if (editId) {
       const existing = products.find(p => p.id === editId)
       const updatedProduct = { ...productPayload, id: editId, createdAt: existing?.createdAt || new Date().toISOString() }
-      await fetch('/api/products', { method: 'PUT', body: JSON.stringify(updatedProduct) })
-      setProducts(products.map(p => p.id === editId ? updatedProduct : p))
-      setEditId(null)
+      try {
+        const res = await fetch('/api/products', { method: 'PUT', body: JSON.stringify(updatedProduct) })
+        if (!res.ok) {
+          const errData = await res.json()
+          throw new Error(errData.error || 'Failed to update product')
+        }
+        setProducts(products.map(p => p.id === editId ? updatedProduct : p))
+        setEditId(null)
+      } catch (err: any) {
+        setActionError({ title: 'Update Failed', message: err.message })
+        return
+      }
     } else {
       const newProduct = { ...productPayload, id: Date.now().toString(), createdAt: new Date().toISOString() }
-      await fetch('/api/products', { method: 'POST', body: JSON.stringify(newProduct) })
-      setProducts([newProduct, ...products])
+      try {
+        const res = await fetch('/api/products', { method: 'POST', body: JSON.stringify(newProduct) })
+        if (!res.ok) {
+          const errData = await res.json()
+          throw new Error(errData.error || 'Failed to save product')
+        }
+        setProducts([newProduct, ...products])
+      } catch (err: any) {
+        setActionError({ title: 'Save Failed', message: err.message })
+        return
+      }
     }
     setForm(emptyProduct())
     setView('products')
@@ -159,9 +177,9 @@ export default function AdminPage() {
       setProducts(products.filter(p => p.id !== id))
       setDeleteConfirm(null)
       triggerSaved()
-    } catch (err) {
+    } catch (err: any) {
       console.error(err)
-      setDeleteError("Failed to delete product. Please try again.")
+      setActionError({ title: 'Deletion Failed', message: err.message || "Failed to delete product. Please try again." })
     }
   }
 
@@ -632,17 +650,17 @@ export default function AdminPage() {
         </div>
       </div>
 
-      {/* Delete Error Modal */}
-      {deleteError && (
+      {/* Action Error Modal */}
+      {actionError && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
           <div className="bg-[#111113] border border-[#1a1a1e] rounded-2xl p-6 w-full max-w-sm text-center">
             <div className="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <AlertCircle size={24} className="text-red-500" />
             </div>
-            <h3 className="text-lg font-bold text-white mb-2">Deletion Failed</h3>
-            <p className="text-sm text-[#9aa0aa] mb-6">{deleteError}</p>
+            <h3 className="text-lg font-bold text-white mb-2">{actionError.title}</h3>
+            <p className="text-sm text-[#9aa0aa] mb-6">{actionError.message}</p>
             <button
-              onClick={() => setDeleteError(null)}
+              onClick={() => setActionError(null)}
               className="w-full py-3 rounded-xl bg-[#1a1a1e] text-white font-semibold text-sm hover:bg-[#2e2e35] transition-colors"
             >
               Okay
